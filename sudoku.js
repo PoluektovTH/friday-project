@@ -1,5 +1,5 @@
-const fs = require("fs");
-const { EOL } = require("os");
+const fs = require('fs');
+const { EOL } = require('os');
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -7,27 +7,32 @@ const { EOL } = require("os");
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8");
+const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8');
+
+function perebor(str) {
+  str.map(el);
+}
 
 function solve(boardString) {
   const re = /\S{9}/g;
-  return boardString
+  const horizArr = boardString
     .split(EOL)
     .map((el) => [el])
     .map((el) => el.join().match(re));
+  // for (let i = 0, j = 0; i < 9; i++, j++) {
+  //   if (arr[i][i] === '-') {if (arr[i].indexOf())}
+  // }
+  // const vertArr = horizArr.map((e) => (e = [e]));
+  const level = process.argv[2] - 1;
+  const vertArr = horizArr[level]
+    .flat()
+    .map((e) => (e = [e]))
+    .map((col, i) => horizArr[level].map((row) => row[i]))
+    .map((el) => el.join(''));
+  return vertArr;
 }
 
 console.log(solve(boardString));
-
-// console.log(solve(boardString));
-
-// const a = solve(boardString);
-
-// const re = /\S{9}/g;
-// const reGorizont = a[0].join().match(re);
-
-// console.log(reGorizont);
-
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
