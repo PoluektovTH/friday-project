@@ -31,7 +31,7 @@ function solve(boardString) {
     .map((el) => el.join(''));
   return vertArr;
 }
-
+console.log(boardString);
 console.log(solve(boardString));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
