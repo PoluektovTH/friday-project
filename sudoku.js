@@ -15,6 +15,7 @@ function perebor(str) {
 
 function solve(boardString) {
   const re = /\S{9}/g;
+  const level = process.argv[2] - 1;
   const horizArr = boardString
     .split(EOL)
     .map((el) => [el])
@@ -23,13 +24,12 @@ function solve(boardString) {
   //   if (arr[i][i] === '-') {if (arr[i].indexOf())}
   // }
   // const vertArr = horizArr.map((e) => (e = [e]));
-  const level = process.argv[2] - 1;
   const vertArr = horizArr[level]
-    .flat()
-    .map((e) => (e = [e]))
+    // .flat()
+    // .map((e) => (e = [e]))
     .map((col, i) => horizArr[level].map((row) => row[i]))
     .map((el) => el.join(''));
-  return vertArr;
+  return horizArr[level][0][0];
 }
 console.log(boardString);
 console.log(solve(boardString));
