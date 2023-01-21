@@ -13,4 +13,6 @@ function findIndexCub(i, j) {
   return arr;
 }
 
-console.log(findIndexCub(0, 0));
+// console.log(findIndexCub(0, 0));
+
+module.exports = findIndexCub;

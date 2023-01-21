@@ -1,5 +1,6 @@
-const fs = require("fs");
-const { EOL } = require("os");
+const fs = require('fs');
+const { EOL } = require('os');
+const findIndexCub = require('./findIndexCub');
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -7,7 +8,7 @@ const { EOL } = require("os");
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8");
+const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8');
 
 function perebor(str) {
   str.map(el);
@@ -15,33 +16,35 @@ function perebor(str) {
 
 function solve(boardString) {
   const re = /\S{9}/g;
-  const level = process.argv[2] - 1;
-  let horizArr = boardString
+  const level = process.argv[2] - 1; //пользователь задаёт уровень
+  let horizArr = boardString //получаем горизонтальные строки
     .split(EOL)
     .map((el) => [el])
     .map((el) => el.join().match(re));
 
-  // let vertArr = horizArr.map((e) => (e = [e]));
+  // let vertArr = horizArr.map((e) => (e = [e])); //получаем вертикальные строки
   // vertArr = horizArr[level]
   //   // .flat()
   //   // .map((e) => (e = [e]))
   //   .map((col, i) => horizArr[level].map((row) => row[i]))
   //   .map((el) => el.join(""));
 
-  horizArr = horizArr[level].map((el) => el.split(""));
+  horizArr = horizArr[level].map((el) => el.split(''));
 
   for (let i = 0; i < horizArr.length; i++) {
+    //замена тире на цифру
     for (let j = 0; j < horizArr.length; j++) {
-      if (horizArr[i][j] === "-") {
-        horizArr[i].splice([j], 1, "9");
+      if (horizArr[i][j] === '-') {
+        horizArr[i].splice([j], 1, '9');
       }
     }
   }
 
   return horizArr;
 }
+console.log(findIndexCub(0, 0));
 
-console.log(solve(boardString));
+// console.log(solve(boardString));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
