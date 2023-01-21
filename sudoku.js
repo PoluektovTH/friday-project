@@ -1,6 +1,6 @@
-const fs = require('fs');
-const { EOL } = require('os');
-const findIndexCub = require('./findIndexCub');
+const fs = require("fs");
+const { EOL } = require("os");
+const findIndexCub = require("./findIndexCub");
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -8,7 +8,7 @@ const findIndexCub = require('./findIndexCub');
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8');
+const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8");
 
 function perebor(str) {
   str.map(el);
@@ -29,20 +29,25 @@ function solve(boardString) {
   //   .map((col, i) => horizArr[level].map((row) => row[i]))
   //   .map((el) => el.join(""));
 
-  horizArr = horizArr[level].map((el) => el.split(''));
+  horizArr = horizArr[level].map((el) => el.split(""));
 
   for (let i = 0; i < horizArr.length; i++) {
     //замена тире на цифру
     for (let j = 0; j < horizArr.length; j++) {
-      if (horizArr[i][j] === '-') {
-        horizArr[i].splice([j], 1, '9');
+      if (horizArr[i][j] === "-") {
+        horizArr[i].splice([j], 1, "9");
       }
     }
   }
 
   return horizArr;
 }
-console.log(findIndexCub(0, 0));
+
+horizArr = solve(boardString);
+const char = findIndexCub(0, 0);
+const horizArrCub = horizArr[char[0][0]][char[0][1]];
+
+console.log(horizArrCub);
 
 // console.log(solve(boardString));
 /**
