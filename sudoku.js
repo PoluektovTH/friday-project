@@ -1,6 +1,6 @@
-const fs = require('fs');
-const { EOL } = require('os');
-const findIndexCub = require('./findIndexCub');
+const fs = require("fs");
+const { EOL } = require("os");
+const findIndexCub = require("./findIndexCub");
 const level = process.argv[2] - 1; //пользователь задаёт уровень
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -8,7 +8,7 @@ const level = process.argv[2] - 1; //пользователь задаёт ур�
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8');
+const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8");
 
 function perebor(str) {
   str.map(el);
@@ -21,33 +21,148 @@ function solve(boardString) {
     .map((el) => [el])
     .map((el) => el.join().match(re));
 
-  // let vertArr = horizArr.map((e) => (e = [e])); //получаем вертикальные строки
-  // vertArr = horizArr[level]
-  //   // .flat()
-  //   // .map((e) => (e = [e]))
-  //   .map((col, i) => horizArr[level].map((row) => row[i]))
-  //   .map((el) => el.join(""));
+  horizArr = horizArr[level].map((el) => el.split(""));
 
-  horizArr = horizArr[level].map((el) => el.split(''));
+  let vertArr = horizArr.map((e) => (e = [e]));
+  vertArr = horizArr[level].map((col, l) =>
+    horizArr[level].map((row) => row[l])
+  );
 
-  // for (let i = 0; i < horizArr.length; i++) {
-  //   //замена тире на цифру
-  //   for (let j = 0; j < horizArr.length; j++) {
-  //     if (horizArr[i][j] === '-') {
-  //       horizArr[i].splice([j], 1, '9');
-  //     }
-  //   }
-  // }
-  let chars = findIndexCub(0, 0);
-  let cube = chars.map((el) => horizArr[el[0]][el[1]]);
-  console.log(cube);
+  let cube;
+  let chars;
+
+  const allNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  let needNumber;
+  let finalArr;
+  let needVertarArr;
+
+  for (let i = 0; i < horizArr.length; i++) {
+    //замена тире на цифру
+    for (let j = 0; j < horizArr.length; j++) {
+      if (horizArr[i][j] === "-") {
+        needVertarArr = horizArr.map((el, index) => el[j]);
+
+        chars = findIndexCub(i, j);
+        cube = chars.map((el) => horizArr[el[0]][el[1]]);
+        finalArr = [...horizArr[i], ...needVertarArr, ...cube, ...allNumbers];
+
+        needNumber = finalArr.filter(
+          (el) => finalArr.indexOf(el) === finalArr.lastIndexOf(el)
+        );
+        if (needNumber.length === 1) {
+          horizArr[i].splice([j], 1, needNumber[0]);
+        }
+      }
+    }
+  }
+
+  for (let i = 0; i < horizArr.length; i++) {
+    //замена тире на цифру
+    for (let j = 0; j < horizArr.length; j++) {
+      if (horizArr[i][j] === "-") {
+        needVertarArr = horizArr.map((el, index) => el[j]);
+
+        chars = findIndexCub(i, j);
+        cube = chars.map((el) => horizArr[el[0]][el[1]]);
+        finalArr = [...horizArr[i], ...needVertarArr, ...cube, ...allNumbers];
+
+        needNumber = finalArr.filter(
+          (el) => finalArr.indexOf(el) === finalArr.lastIndexOf(el)
+        );
+        if (needNumber.length === 1) {
+          horizArr[i].splice([j], 1, needNumber[0]);
+        }
+      }
+    }
+  }
+
+  for (let i = 0; i < horizArr.length; i++) {
+    //замена тире на цифру
+    for (let j = 0; j < horizArr.length; j++) {
+      if (horizArr[i][j] === "-") {
+        needVertarArr = horizArr.map((el, index) => el[j]);
+
+        chars = findIndexCub(i, j);
+        cube = chars.map((el) => horizArr[el[0]][el[1]]);
+        finalArr = [...horizArr[i], ...needVertarArr, ...cube, ...allNumbers];
+
+        needNumber = finalArr.filter(
+          (el) => finalArr.indexOf(el) === finalArr.lastIndexOf(el)
+        );
+        if (needNumber.length === 1) {
+          horizArr[i].splice([j], 1, needNumber[0]);
+        }
+      }
+    }
+  }
+
+  for (let i = 0; i < horizArr.length; i++) {
+    //замена тире на цифру
+    for (let j = 0; j < horizArr.length; j++) {
+      if (horizArr[i][j] === "-") {
+        needVertarArr = horizArr.map((el, index) => el[j]);
+
+        chars = findIndexCub(i, j);
+        cube = chars.map((el) => horizArr[el[0]][el[1]]);
+        finalArr = [...horizArr[i], ...needVertarArr, ...cube, ...allNumbers];
+
+        needNumber = finalArr.filter(
+          (el) => finalArr.indexOf(el) === finalArr.lastIndexOf(el)
+        );
+        if (needNumber.length === 1) {
+          horizArr[i].splice([j], 1, needNumber[0]);
+        }
+      }
+    }
+  }
+
+  for (let i = 0; i < horizArr.length; i++) {
+    //замена тире на цифру
+    for (let j = 0; j < horizArr.length; j++) {
+      if (horizArr[i][j] === "-") {
+        needVertarArr = horizArr.map((el, index) => el[j]);
+
+        chars = findIndexCub(i, j);
+        cube = chars.map((el) => horizArr[el[0]][el[1]]);
+        finalArr = [...horizArr[i], ...needVertarArr, ...cube, ...allNumbers];
+
+        needNumber = finalArr.filter(
+          (el) => finalArr.indexOf(el) === finalArr.lastIndexOf(el)
+        );
+        if (needNumber.length === 1) {
+          horizArr[i].splice([j], 1, needNumber[0]);
+        }
+      }
+    }
+  }
+
+  for (let i = 0; i < horizArr.length; i++) {
+    //замена тире на цифру
+    for (let j = 0; j < horizArr.length; j++) {
+      if (horizArr[i][j] === "-") {
+        needVertarArr = horizArr.map((el, index) => el[j]);
+
+        chars = findIndexCub(i, j);
+        cube = chars.map((el) => horizArr[el[0]][el[1]]);
+        finalArr = [...horizArr[i], ...needVertarArr, ...cube, ...allNumbers];
+
+        needNumber = finalArr.filter(
+          (el) => finalArr.indexOf(el) === finalArr.lastIndexOf(el)
+        );
+
+        horizArr[i].splice([j], 1, needNumber[1] || needNumber[0]);
+      }
+    }
+  }
+
+  return horizArr;
 }
 <<<<<<< HEAD
 
 =======
 >>>>>>> c4931edb901967f3457c4b3e17853f4ad9d87753
 
-console.log(solve(boardString));
+console.table(solve(boardString));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
