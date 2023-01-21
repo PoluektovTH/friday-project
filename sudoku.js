@@ -157,10 +157,7 @@ function solve(boardString) {
 
   return horizArr;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> c4931edb901967f3457c4b3e17853f4ad9d87753
 
 console.table(solve(boardString));
 /**
