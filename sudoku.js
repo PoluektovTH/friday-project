@@ -1,3 +1,4 @@
+const { count } = require('console');
 const fs = require('fs');
 const { EOL } = require('os');
 const findIndexCub = require('./findIndexCub');
@@ -25,10 +26,10 @@ function solve(boardString) {
   let finalArr;
   let needVertarArr;
 
-  const allNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-  function recFunc(horizArr) {
+  while (horizArr.flat().indexOf('-') !== -1) {
     for (let i = 0; i < horizArr.length; i++) {
+      //замена тире на цифру;
+      let count;
       for (let j = 0; j < horizArr.length; j++) {
         if (horizArr[i][j] === '-') {
           needVertarArr = horizArr.map((el, index) => el[j]);
@@ -42,14 +43,12 @@ function solve(boardString) {
           );
           if (needNumber.length === 1) {
             horizArr[i].splice([j], 1, needNumber[0]);
-          } else {
-            return recFunc(horizArr)};
           }
         }
       }
     }
   }
-  recFunc(horizArr);
+  return horizArr;
 }
 
 console.table(solve(boardString));
