@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { EOL } = require('os');
 const findIndexCub = require('./findIndexCub');
-
+const level = process.argv[2] - 1; //пользователь задаёт уровень
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -16,7 +16,6 @@ function perebor(str) {
 
 function solve(boardString) {
   const re = /\S{9}/g;
-  const level = process.argv[2] - 1; //пользователь задаёт уровень
   let horizArr = boardString //получаем горизонтальные строки
     .split(EOL)
     .map((el) => [el])
@@ -31,20 +30,24 @@ function solve(boardString) {
 
   horizArr = horizArr[level].map((el) => el.split(''));
 
-  for (let i = 0; i < horizArr.length; i++) {
-    //замена тире на цифру
-    for (let j = 0; j < horizArr.length; j++) {
-      if (horizArr[i][j] === '-') {
-        horizArr[i].splice([j], 1, '9');
-      }
-    }
-  }
-
-  return horizArr;
+  // for (let i = 0; i < horizArr.length; i++) {
+  //   //замена тире на цифру
+  //   for (let j = 0; j < horizArr.length; j++) {
+  //     if (horizArr[i][j] === '-') {
+  //       horizArr[i].splice([j], 1, '9');
+  //     }
+  //   }
+  // }
+  let chars = findIndexCub(0, 0);
+  let cube = chars.map((el) => horizArr[el[0]][el[1]]);
+  console.log(cube);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c4931edb901967f3457c4b3e17853f4ad9d87753
 
-// console.log(solve(boardString));
+console.log(solve(boardString));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
