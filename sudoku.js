@@ -42,7 +42,7 @@ function solve(boardString) {
 
   return horizArr;
 }
-console.log(findIndexCub(0, 0));
+
 
 // console.log(solve(boardString));
 /**
