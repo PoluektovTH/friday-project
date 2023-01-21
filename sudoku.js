@@ -1,7 +1,7 @@
-const { count } = require("console");
-const fs = require("fs");
-const { EOL } = require("os");
-const findIndexCub = require("./findIndexCub");
+const { count } = require('console');
+const fs = require('fs');
+const { EOL } = require('os');
+const findIndexCub = require('./findIndexCub');
 const level = process.argv[2] - 1; //пользователь задаёт уровень
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -9,7 +9,7 @@ const level = process.argv[2] - 1; //пользователь задаёт ур�
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, "utf-8");
+const boardString = fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8');
 
 function perebor(str) {
   str.map(el);
@@ -22,7 +22,7 @@ function solve(boardString) {
     .map((el) => [el])
     .map((el) => el.join().match(re));
 
-  horizArr = horizArr[level].map((el) => el.split(""));
+  horizArr = horizArr[level].map((el) => el.split(''));
 
   let vertArr = horizArr.map((e) => (e = [e]));
   vertArr = horizArr[level].map((col, l) =>
@@ -32,17 +32,17 @@ function solve(boardString) {
   let cube;
   let chars;
 
-  const allNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const allNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   let needNumber;
   let finalArr;
   let needVertarArr;
 
-  while (horizArr.flat().indexOf("-") !== -1) {
+  while (horizArr.flat().indexOf('-') !== -1) {
     for (let i = 0; i < horizArr.length; i++) {
       //замена тире на цифру;
       let count;
       for (let j = 0; j < horizArr.length; j++) {
-        if (horizArr[i][j] === "-") {
+        if (horizArr[i][j] === '-') {
           needVertarArr = horizArr.map((el, index) => el[j]);
 
           chars = findIndexCub(i, j);
