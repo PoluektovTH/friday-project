@@ -15,21 +15,15 @@ function perebor(str) {
 
 function solve(boardString) {
   const re = /\S{9}/g;
-  const level = process.argv[2] - 1;
-  const horizArr = boardString
+  const level = process.argv[2] - 1; //user enters level
+  const horizArr = boardString // string from field
     .split(EOL)
     .map((el) => [el])
     .map((el) => el.join().match(re));
-  // for (let i = 0, j = 0; i < 9; i++, j++) {
-  //   if (arr[i][i] === '-') {if (arr[i].indexOf())}
-  // }
-  // const vertArr = horizArr.map((e) => (e = [e]));
-  const vertArr = horizArr[level]
-    // .flat()
-    // .map((e) => (e = [e]))
+  const vertArr = horizArr[level] // columns to strings
     .map((col, i) => horizArr[level].map((row) => row[i]))
     .map((el) => el.join(''));
-  return horizArr[level][0][0];
+  return horizArr[level];
 }
 
 console.log(solve(boardString));
@@ -52,3 +46,7 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+// let arr = ['6', '-', '8', '7', '3', '-', '-', '-', '-'];
+// let mySet = new Set(arr);
+// console.log(Array.from(mySet));
